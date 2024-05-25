@@ -24,13 +24,9 @@ public class TopicController {
         List<Topic> allTopics = service.getAllTopics();
 
         if (allTopics.isEmpty()) {
-            return new ResponseEntity<>(
-                    allTopics, HttpStatus.NOT_FOUND
-            );
+            return new ResponseEntity<>(allTopics, HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(
-                    allTopics, HttpStatus.OK
-            );
+            return new ResponseEntity<>(allTopics, HttpStatus.OK);
         }
     }
 
@@ -41,13 +37,10 @@ public class TopicController {
         Optional<Topic> topic = service.getTopic(id);
 
         if (topic.isEmpty()) {
-            return new ResponseEntity<>(
-                    null, HttpStatus.NOT_FOUND
-            );
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(topic, HttpStatus.OK);
         }
-        return new ResponseEntity<>(
-                topic, HttpStatus.OK
-        );
     }
 
     @PostMapping
@@ -59,14 +52,10 @@ public class TopicController {
 
         if (!isAdded) {
             response.put("message", "Couldn't Add Topic");
-            return new ResponseEntity<>(
-                    response, HttpStatus.BAD_REQUEST
-            );
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } else {
             response.put("message", "Topic Added");
-            return new ResponseEntity<>(
-                    response, HttpStatus.OK
-            );
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
     }
 
@@ -80,14 +69,10 @@ public class TopicController {
 
         if (!isUpdated) {
             response.put("message", "Couldn't Update Topic");
-            return new ResponseEntity<>(
-                    response, HttpStatus.BAD_REQUEST
-            );
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } else {
             response.put("message", "Topic Updated");
-            return new ResponseEntity<>(
-                    response, HttpStatus.OK
-            );
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
     }
 
@@ -100,14 +85,10 @@ public class TopicController {
 
         if (!isDeleted) {
             response.put("message", "Couldn't Delete Topic");
-            return new ResponseEntity<>(
-                    response, HttpStatus.BAD_REQUEST
-            );
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } else {
             response.put("message", "Topic Deleted");
-            return new ResponseEntity<>(
-                    response, HttpStatus.OK
-            );
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
     }
 }

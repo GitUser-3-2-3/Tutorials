@@ -1,4 +1,4 @@
-package io.parth.springbootstarter.topic;
+package io.parth.springbootstarter.course;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,30 +11,30 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/topics")
-public class TopicController {
+public class CourseController {
 
-    private final TopicService service;
+    private final CourseService service;
 
-    public TopicController(TopicService service) {
+    public CourseController(CourseService service) {
         this.service = service;
     }
 
     @GetMapping
-    public ResponseEntity<List<Topic>> getAllTopics() {
-        List<Topic> allTopics = service.getAllTopics();
+    public ResponseEntity<List<Course>> getAllTopics() {
+        List<Course> allCours = service.getAllTopics();
 
-        if (allTopics.isEmpty()) {
-            return new ResponseEntity<>(allTopics, HttpStatus.NOT_FOUND);
+        if (allCours.isEmpty()) {
+            return new ResponseEntity<>(allCours, HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(allTopics, HttpStatus.OK);
+            return new ResponseEntity<>(allCours, HttpStatus.OK);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Topic>> getTopic(
+    public ResponseEntity<Optional<Course>> getTopic(
             @PathVariable String id
     ) {
-        Optional<Topic> topic = service.getTopic(id);
+        Optional<Course> topic = service.getTopic(id);
 
         if (topic.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -45,9 +45,9 @@ public class TopicController {
 
     @PostMapping
     public ResponseEntity<Map<String, String>> addTopic(
-            @RequestBody Topic topic
+            @RequestBody Course course
     ) {
-        Boolean isAdded = service.addTopic(topic);
+        Boolean isAdded = service.addTopic(course);
         Map<String, String> response = new HashMap<>();
 
         if (!isAdded) {
@@ -61,10 +61,10 @@ public class TopicController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, String>> updateTopic(
-            @RequestBody Topic topic,
+            @RequestBody Course course,
             @PathVariable String id
     ) {
-        Boolean isUpdated = service.updateTopic(topic, id);
+        Boolean isUpdated = service.updateTopic(course, id);
         Map<String, String> response = new HashMap<>();
 
         if (!isUpdated) {

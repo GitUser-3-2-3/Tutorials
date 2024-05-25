@@ -39,4 +39,10 @@ public class TopicService {
                 .findFirst()
                 .isPresent();
     }
+
+    public Boolean deleteTopic(String id) {
+        return topics.removeIf(
+                topic -> topic.getId().equals(id)
+        );
+    }
 }

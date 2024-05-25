@@ -89,4 +89,24 @@ public class TopicController {
             );
         }
     }
+
+   @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, String>> updateTopic(
+            @PathVariable String id
+    ) {
+        Boolean isDeleted = service.deleteTopic(id);
+        Map<String, String> response = new HashMap<>();
+
+        if (!isDeleted) {
+            response.put("message", "Couldn't Delete Topic");
+            return new ResponseEntity<>(
+                    response, HttpStatus.BAD_REQUEST
+            );
+        } else {
+            response.put("message", "Topic Deleted");
+            return new ResponseEntity<>(
+                    response, HttpStatus.OK
+            );
+        }
+    }
 }

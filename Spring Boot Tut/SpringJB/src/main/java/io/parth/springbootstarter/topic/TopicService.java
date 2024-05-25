@@ -3,46 +3,58 @@ package io.parth.springbootstarter.topic;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TopicService {
 
-    List<Topic> topics = new ArrayList<>(Arrays.asList(
-            new Topic("spring", "spring framework", "spring framework description"),
-            new Topic("java", "java framework", "java description"),
-            new Topic("javascript", "angular", "javascript description")
-    ));
+    private final TopicRepository topicRepository;
+
+    public TopicService(TopicRepository topicRepository) {
+        this.topicRepository = topicRepository;
+    }
 
     public List<Topic> getAllTopics() {
+        List<Topic> topics = new ArrayList<>();
+
+        topicRepository.findAll()
+                .forEach(topics::add);
         return topics;
     }
 
-    public Topic getTopic(String id) {
-        return topics.stream()
-                .filter(topic -> topic.getId().equals(id))
-                .findFirst().orElse(null);
+    public Optional<Topic> getTopic(String id) {
+        return topicRepository.findById(id);
     }
 
     public Boolean addTopic(Topic topic) {
-        return topics.add(topic);
+        if (topic != null) {
+            topicRepository.save(topic);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Boolean updateTopic(Topic updatedTopic, String id) {
-        return topics.stream()
-                .filter(topic -> topic.getId().equals(id))
-                .peek(topic -> {
-                    topic.setName(updatedTopic.getName());
-                    topic.setDescription(updatedTopic.getDescription());
-                })
-                .findFirst()
-                .isPresent();
+        Optional<Topic> topic = topicRepository.findById(id);
+
+        if (topic.isPresent()) {
+            topicRepository.save(updatedTopic);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Boolean deleteTopic(String id) {
-        return topics.removeIf(
-                topic -> topic.getId().equals(id)
-        );
+        Optional<Topic> topic = topicRepository.findById(id);
+
+        if (topic.isPresent()) {
+            topicRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -4,18 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1831bb7c-07fb-4fcc-a05a-dd039d385d64" name="Changes" comment="Added course-data-api">
-      <change afterPath="$PROJECT_DIR$/course-data-api/src/main/java/io/parth/springbootstarter/topic/Topic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-data-api/src/main/java/io/parth/springbootstarter/topic/TopicController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-data-api/src/main/java/io/parth/springbootstarter/topic/TopicService.java" afterDir="false" />
+    <list default="true" id="1831bb7c-07fb-4fcc-a05a-dd039d385d64" name="Changes" comment="added spring data jpa and derby tools to pom">
+      <change afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/topic/TopicRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-data-api/src/main/java/com/parth/coursedataapi/CourseDataApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/course-data-api/src/main/java/io/parth/springbootstarter/CourseDataApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-data-api/src/test/java/com/parth/coursedataapi/CourseDataApiApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/course-data-api/src/test/java/io/parth/springbootstarter/CourseDataApiApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/topic/Topic.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/topic/Topic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/topic/TopicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/topic/TopicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/topic/TopicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/topic/TopicService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -47,9 +56,14 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.CourseApi.executor": "Run",
+    "Spring Boot.CourseApiApplication.executor": "Run",
     "Spring Boot.CourseDataApiApplication.executor": "Run",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "17",
@@ -64,7 +78,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.CourseApiApplication">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/course-data-api/src/main/java/com/parth/coursedataapi" />
+    </key>
+  </component>
+  <component name="RunManager">
     <configuration name="CourseApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -74,17 +93,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CourseDataApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="course-data-api" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.parth.coursedataapi.CourseDataApiApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Spring Boot.CourseDataApiApplication" />
-      <item itemvalue="Spring Boot.CourseApiApplication" />
-    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -102,7 +110,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716634720628</updated>
-      <workItem from="1716634721787" duration="349000" />
+      <workItem from="1716634721787" duration="3330000" />
     </task>
     <task id="LOCAL-00001" summary="Added course-data-api">
       <option name="closed" value="true" />
@@ -112,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716634934123</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added spring data jpa and derby tools to pom">
+      <option name="closed" value="true" />
+      <created>1716635303506</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716635303506</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +137,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added course-data-api" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added course-data-api" />
+    <MESSAGE value="added spring data jpa and derby tools to pom" />
+    <option name="LAST_COMMIT_MESSAGE" value="added spring data jpa and derby tools to pom" />
   </component>
 </project>

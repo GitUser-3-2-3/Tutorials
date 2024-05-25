@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/topics")
@@ -34,12 +35,12 @@ public class TopicController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Topic> getTopic(
+    public ResponseEntity<Optional<Topic>> getTopic(
             @PathVariable String id
     ) {
-        Topic topic = service.getTopic(id);
+        Optional<Topic> topic = service.getTopic(id);
 
-        if (topic == null) {
+        if (topic.isEmpty()) {
             return new ResponseEntity<>(
                     null, HttpStatus.NOT_FOUND
             );
@@ -90,7 +91,7 @@ public class TopicController {
         }
     }
 
-   @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, String>> updateTopic(
             @PathVariable String id
     ) {

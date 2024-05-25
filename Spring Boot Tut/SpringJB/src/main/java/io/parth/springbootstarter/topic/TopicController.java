@@ -4,10 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static io.parth.springbootstarter.CommonController.*;
 
 @RestController
 @RequestMapping("/topics")
@@ -30,11 +31,11 @@ public class TopicController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{topicId}")
     public ResponseEntity<Optional<Topic>> getTopic(
-            @PathVariable String id
+            @PathVariable String topicId
     ) {
-        Optional<Topic> topic = service.getTopic(id);
+        Optional<Topic> topic = service.getTopic(topicId);
 
         if (topic.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -48,47 +49,23 @@ public class TopicController {
             @RequestBody Topic topic
     ) {
         Boolean isAdded = service.addTopic(topic);
-        Map<String, String> response = new HashMap<>();
-
-        if (!isAdded) {
-            response.put("message", "Couldn't Add Course");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        } else {
-            response.put("message", "Course Added");
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
+        return getMapPostEntity(isAdded);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{topicId}")
     public ResponseEntity<Map<String, String>> updateTopic(
             @RequestBody Topic topic,
-            @PathVariable String id
+            @PathVariable String topicId
     ) {
-        Boolean isUpdated = service.updateTopic(topic, id);
-        Map<String, String> response = new HashMap<>();
-
-        if (!isUpdated) {
-            response.put("message", "Couldn't Update Course");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        } else {
-            response.put("message", "Course Updated");
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
+        Boolean isUpdated = service.updateTopic(topic, topicId);
+        return getMapUpdateEntity(isUpdated);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{topicId}")
     public ResponseEntity<Map<String, String>> updateTopic(
-            @PathVariable String id
+            @PathVariable String topicId
     ) {
-        Boolean isDeleted = service.deleteTopic(id);
-        Map<String, String> response = new HashMap<>();
-
-        if (!isDeleted) {
-            response.put("message", "Couldn't Delete Course");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        } else {
-            response.put("message", "Course Deleted");
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
+        Boolean isDeleted = service.deleteTopic(topicId);
+        return getMapDeleteEntity(isDeleted);
     }
 }

@@ -1,16 +1,18 @@
 package io.parth.springbootstarter.course;
 
+import io.parth.springbootstarter.topic.Topic;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static io.parth.springbootstarter.CommonController.*;
+
 @RestController
-@RequestMapping("/topics")
+@RequestMapping("/topics/{topicId}/courses")
 public class CourseController {
 
     private final CourseService service;
@@ -20,21 +22,24 @@ public class CourseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Course>> getAllTopics() {
-        List<Course> allCours = service.getAllTopics();
+    public ResponseEntity<List<Course>> getAllCourses(
+            @PathVariable String topicId
+    ) {
+        List<Course> allCourses = service.getAllCourses(topicId);
 
-        if (allCours.isEmpty()) {
-            return new ResponseEntity<>(allCours, HttpStatus.NOT_FOUND);
+        if (allCourses.isEmpty()) {
+            return new ResponseEntity<>(allCourses, HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(allCours, HttpStatus.OK);
+            return new ResponseEntity<>(allCourses, HttpStatus.OK);
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<Course>> getTopic(
-            @PathVariable String id
+    @GetMapping("/{courseId}")
+    public ResponseEntity<Optional<Course>> getCourse(
+            @PathVariable String topicId,
+            @PathVariable String courseId
     ) {
-        Optional<Course> topic = service.getTopic(id);
+        Optional<Course> topic = service.getCourse(topicId, courseId);
 
         if (topic.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -44,51 +49,34 @@ public class CourseController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, String>> addTopic(
-            @RequestBody Course course
-    ) {
-        Boolean isAdded = service.addTopic(course);
-        Map<String, String> response = new HashMap<>();
-
-        if (!isAdded) {
-            response.put("message", "Couldn't Add Course");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        } else {
-            response.put("message", "Course Added");
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Map<String, String>> updateTopic(
+    public ResponseEntity<Map<String, String>> addCourse(
             @RequestBody Course course,
-            @PathVariable String id
+            @PathVariable String topicId
     ) {
-        Boolean isUpdated = service.updateTopic(course, id);
-        Map<String, String> response = new HashMap<>();
+        course.setTopic(new Topic(topicId, "", ""));
 
-        if (!isUpdated) {
-            response.put("message", "Couldn't Update Course");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        } else {
-            response.put("message", "Course Updated");
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
+        Boolean isAdded = service.addCourse(course);
+        return getMapPostEntity(isAdded);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, String>> updateTopic(
-            @PathVariable String id
+    @PutMapping("/{courseId}")
+    public ResponseEntity<Map<String, String>> updateCourse(
+            @RequestBody Course course,
+            @PathVariable String courseId,
+            @PathVariable String topicId
     ) {
-        Boolean isDeleted = service.deleteTopic(id);
-        Map<String, String> response = new HashMap<>();
+        course.setTopic(new Topic(topicId, "", ""));
 
-        if (!isDeleted) {
-            response.put("message", "Couldn't Delete Course");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        } else {
-            response.put("message", "Course Deleted");
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
+        Boolean isUpdated = service.updateCourse(course, courseId);
+        return getMapUpdateEntity(isUpdated);
+    }
+
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<Map<String, String>> deleteCourse(
+            @PathVariable String topicId,
+            @PathVariable String courseId
+    ) {
+        Boolean isDeleted = service.deleteCourse(topicId, courseId);
+        return getMapDeleteEntity(isDeleted);
     }
 }

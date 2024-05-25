@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1831bb7c-07fb-4fcc-a05a-dd039d385d64" name="Changes" comment="Made changes to the service layer to work with the database" />
+    <list default="true" id="1831bb7c-07fb-4fcc-a05a-dd039d385d64" name="Changes" comment="Added course api">
+      <change afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/CommonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/course/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/course/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/course/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/course/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/course/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/course/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/course/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/topic/TopicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/topic/TopicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,21 +29,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "GitUser-3-2-3"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;GitUser-3-2-3&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/GitUser-3-2-3/Tutorials.git",
-    "accountId": "1cf00d13-9feb-45c8-ac2e-9f809c6c6672"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/GitUser-3-2-3/Tutorials.git&quot;,
+    &quot;accountId&quot;: &quot;1cf00d13-9feb-45c8-ac2e-9f809c6c6672&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2gxMLb9SASwoIeVZwl2oWiYLggp" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -56,21 +65,24 @@
     "Spring Boot.CourseApi.executor": "Run",
     "Spring Boot.CourseApiApplication.executor": "Run",
     "Spring Boot.CourseDataApiApplication.executor": "Run",
+    "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/parth/Tutorials/Spring Boot Tut/course-data-api/src/main/java/com/parth/coursedataapi",
+    "last_opened_file_path": "/Users/parth/Tutorials/Spring Boot Tut/SpringJB/src/main/java/io/parth/springbootstarter/course",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter/course" />
+      <recent name="$PROJECT_DIR$/SpringJB/src/main/java/io/parth/springbootstarter" />
       <recent name="$PROJECT_DIR$/course-data-api/src/main/java/com/parth/coursedataapi" />
     </key>
   </component>
@@ -102,6 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716634720628</updated>
       <workItem from="1716634721787" duration="3677000" />
+      <workItem from="1716645789058" duration="5957000" />
     </task>
     <task id="LOCAL-00001" summary="Added course-data-api">
       <option name="closed" value="true" />
@@ -135,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716638312068</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added course api">
+      <option name="closed" value="true" />
+      <created>1716646009651</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716646009651</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +167,7 @@
     <MESSAGE value="Added course-data-api" />
     <MESSAGE value="added spring data jpa and derby tools to pom" />
     <MESSAGE value="Made changes to the service layer to work with the database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made changes to the service layer to work with the database" />
+    <MESSAGE value="Added course api" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added course api" />
   </component>
 </project>

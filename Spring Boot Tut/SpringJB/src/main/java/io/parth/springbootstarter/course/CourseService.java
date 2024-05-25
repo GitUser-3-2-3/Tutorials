@@ -15,19 +15,31 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
-    public List<Course> getAllTopics() {
-        List<Course> cours = new ArrayList<>();
+    public List<Course> getAllCourses(String topicId) {
+/*
+        List<Course> course = new ArrayList<>();
 
-        courseRepository.findAll()
-                .forEach(cours::add);
-        return cours;
+        courseRepository.findByTopicId(topicId)
+                .forEach(course::add);
+        return course;
+*/
+
+        return new ArrayList<>(courseRepository.findByTopicId(topicId));
     }
 
-    public Optional<Course> getTopic(String id) {
-        return courseRepository.findById(id);
+    public Optional<Course> getCourse(String topicId, String courseId) {
+        Optional<Course> course = courseRepository.findById(courseId);
+
+        if (course.isPresent() &&
+                course.get().getTopic().getId().equals(topicId)
+        ) {
+            return course;
+        } else {
+            return Optional.empty();
+        }
     }
 
-    public Boolean addTopic(Course course) {
+    public Boolean addCourse(Course course) {
         if (course != null) {
             courseRepository.save(course);
             return true;
@@ -36,8 +48,8 @@ public class CourseService {
         }
     }
 
-    public Boolean updateTopic(Course updatedCourse, String id) {
-        Optional<Course> topic = courseRepository.findById(id);
+    public Boolean updateCourse(Course updatedCourse, String courseId) {
+        Optional<Course> topic = courseRepository.findById(courseId);
 
         if (topic.isPresent()) {
             courseRepository.save(updatedCourse);
@@ -47,11 +59,13 @@ public class CourseService {
         }
     }
 
-    public Boolean deleteTopic(String id) {
-        Optional<Course> topic = courseRepository.findById(id);
+    public Boolean deleteCourse(String topicId, String courseId) {
+        Optional<Course> course = courseRepository.findById(courseId);
 
-        if (topic.isPresent()) {
-            courseRepository.deleteById(id);
+        if (course.isPresent() &&
+                course.get().getTopic().getId().equals(topicId)
+        ) {
+            courseRepository.deleteById(courseId);
             return true;
         } else {
             return false;

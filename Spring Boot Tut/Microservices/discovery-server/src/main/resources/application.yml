@@ -1,11 +1,13 @@
 spring:
   application:
-    name: discover-server
+    name: service-registry
 
 server:
   port: 8761
 
 eureka:
+  instance:
+    hostname: localhost
   client:
-    register-with-eureka: false
     fetch-registry: false
+    register-with-eureka: false

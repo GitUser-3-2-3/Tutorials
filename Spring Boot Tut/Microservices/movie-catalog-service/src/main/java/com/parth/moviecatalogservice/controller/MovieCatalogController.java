@@ -24,13 +24,14 @@ public class MovieCatalogController {
     @GetMapping("/{userId}")
     public List<CatalogItem> getCatalog(@PathVariable String userId) {
 
-        UserRating ratings = restTemplate.getForObject("http://localhost:8083/ratings/users/" + userId,
-                UserRating.class);
+        UserRating ratings = restTemplate.getForObject(
+                "http://ratings-data-service/ratings/users/" + userId, UserRating.class
+        );
 
         return ratings != null ? ratings.getUserRating().stream().map(rating -> {
             // for each movieId, call movie-info-service and get details
             Movie movie = restTemplate.getForObject(
-                    "http://localhost:8082/movies/" + rating.getMovieId(), Movie.class
+                    "http://movie-info-service/movies/" + rating.getMovieId(), Movie.class
             );
             return new CatalogItem(movie != null ? movie.getName() : null, "Description", rating.getRating());
         }).toList() : null;

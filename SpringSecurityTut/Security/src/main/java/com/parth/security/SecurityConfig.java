@@ -11,8 +11,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -20,6 +24,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
+
+    final DataSource dataSource;
+
+    public SecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -41,11 +51,23 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails parth = User.withUsername("parth").password("{noop}parth")
+        UserDetails parth = User.withUsername("parth")
+                .password(passwordEncoder().encode("parth"))
                 .roles("USER").build();
-        UserDetails admin = User.withUsername("admin").password("{noop}admin")
+
+        UserDetails admin = User.withUsername("admin")
+                .password(passwordEncoder().encode("admin"))
                 .roles("ADMIN").build();
 
-        return new InMemoryUserDetailsManager(parth, admin);
+        JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
+        userDetailsManager.createUser(parth);
+        userDetailsManager.createUser(admin);
+        return userDetailsManager;
+
+        // return new InMemoryUserDetailsManager(parth, admin);
+    }
+
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

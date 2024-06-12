@@ -3,3 +3,10 @@ spring:
     user:
       name: user
       password: parth
+
+  datasource:
+    url: jdbc:h2:mem:db
+
+  h2:
+    console:
+      enabled: true

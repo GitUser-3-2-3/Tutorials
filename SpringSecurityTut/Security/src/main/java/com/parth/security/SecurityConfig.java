@@ -3,6 +3,7 @@ package com.parth.security;
 import com.parth.security.jwt.AuthEntryPointJwt;
 import com.parth.security.jwt.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,7 +24,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
-import java.util.Locale;
 
 @Configuration
 @EnableWebSecurity
@@ -37,7 +37,7 @@ public class SecurityConfig {
     private AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
-    public AuthTokenFilter authJwtTokenFilter() {
+    public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
     }
 
@@ -45,7 +45,7 @@ public class SecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests.requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/api/signIn").permitAll()
+                        .requestMatchers("/signIn").permitAll()
                         .anyRequest().authenticated()
         );
         http.sessionManagement(session -> session.sessionCreationPolicy(
@@ -59,11 +59,12 @@ public class SecurityConfig {
         ));
         http.csrf(AbstractHttpConfigurer::disable);
         http.addFilterBefore(
-                authJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class
+                authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class
         );
         return http.build();
     }
 
+/*
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails parth = User.withUsername("parth")
@@ -80,6 +81,32 @@ public class SecurityConfig {
         return userDetailsManager;
 
         // return new InMemoryUserDetailsManager(parth, admin);
+    }
+*/
+
+    @Bean
+    public UserDetailsService userDetailsService(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
+    }
+
+    @Bean
+    public CommandLineRunner initData(UserDetailsService userDetailsService) {
+        return args -> {
+            JdbcUserDetailsManager manager = (JdbcUserDetailsManager) userDetailsService;
+            UserDetails user1 = User.withUsername("user1")
+                    .password(passwordEncoder().encode("password1"))
+                    .roles("USER")
+                    .build();
+            UserDetails admin = User.withUsername("admin")
+                    //.password(passwordEncoder().encode("adminPass"))
+                    .password(passwordEncoder().encode("adminPass"))
+                    .roles("ADMIN")
+                    .build();
+
+            JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
+            userDetailsManager.createUser(user1);
+            userDetailsManager.createUser(admin);
+        };
     }
 
     public PasswordEncoder passwordEncoder() {

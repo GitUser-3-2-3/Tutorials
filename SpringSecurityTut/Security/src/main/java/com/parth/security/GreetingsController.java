@@ -1,6 +1,7 @@
 package com.parth.security;
 
 import com.parth.security.jwt.JwtUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,13 +24,11 @@ import java.util.Map;
 @RestController
 public class GreetingsController {
 
-    private final AuthenticationManager authenticationManager;
-    private final JwtUtils jwtUtils;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-    public GreetingsController(AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
-        this.authenticationManager = authenticationManager;
-        this.jwtUtils = jwtUtils;
-    }
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @GetMapping("/hello")
     public String sayHello() {

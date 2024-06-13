@@ -94,12 +94,11 @@ public class SecurityConfig {
         return args -> {
             JdbcUserDetailsManager manager = (JdbcUserDetailsManager) userDetailsService;
             UserDetails user1 = User.withUsername("user1")
-                    .password(passwordEncoder().encode("password1"))
+                    .password("{bcrypt}" + passwordEncoder().encode("password1"))
                     .roles("USER")
                     .build();
             UserDetails admin = User.withUsername("admin")
-                    //.password(passwordEncoder().encode("adminPass"))
-                    .password(passwordEncoder().encode("adminPass"))
+                    .password("{bcrypt}" + passwordEncoder().encode("adminPass"))
                     .roles("ADMIN")
                     .build();
 

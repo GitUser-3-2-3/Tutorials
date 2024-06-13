@@ -1,7 +1,11 @@
 package com.parth.security;
 
+import com.parth.security.jwt.AuthEntryPointJwt;
+import com.parth.security.jwt.AuthTokenFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,10 +29,15 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    final DataSource dataSource;
+    @Autowired
+    DataSource dataSource;
 
-    public SecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    @Autowired
+    private AuthEntryPointJwt unauthorizedHandler;
+
+    @Bean
+    public AuthTokenFilter authJwtTokenFilter() {
+        return new AuthTokenFilter();
     }
 
     @Bean

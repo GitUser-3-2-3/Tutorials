@@ -2,6 +2,9 @@ package com.parth.booknetwork.user;
 
 import com.parth.booknetwork.role.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -37,7 +40,9 @@ public class User implements UserDetails, Principal {
     @Column(unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
+
     private boolean accountLocked;
     private boolean enabled;
 

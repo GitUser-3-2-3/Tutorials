@@ -33,7 +33,6 @@ public class JwtService {
         return claimResolver.apply(claims);
     }
 
-    @SuppressWarnings("unused")
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
     }
@@ -46,7 +45,6 @@ public class JwtService {
                 .compact();
     }
 
-    @SuppressWarnings("unused")
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));

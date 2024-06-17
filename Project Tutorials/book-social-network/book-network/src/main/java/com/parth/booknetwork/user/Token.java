@@ -17,6 +17,7 @@ public class Token {
     @GeneratedValue
     private Integer id;
 
+    @Column(unique = true)
     private String token;
 
     private LocalDateTime createdAt;

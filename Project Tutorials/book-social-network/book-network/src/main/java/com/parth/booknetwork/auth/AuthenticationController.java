@@ -15,14 +15,15 @@ import static org.springframework.http.HttpStatus.ACCEPTED;
 @Tag(name = "Authentication")
 public class AuthenticationController {
 
-    private final AuthenticationService service;
+   private final AuthenticationService service;
 
-    @PostMapping("/register")
-    @ResponseStatus(ACCEPTED)
-    public ResponseEntity<?> register(
-            @RequestBody @Valid RegistrationRequest request
-    ) throws MessagingException {
-        service.register(request);
-        return ResponseEntity.accepted().build();
-    }
+   @PostMapping("/register")
+   @ResponseStatus(ACCEPTED)
+   public ResponseEntity<?> register(
+        @RequestBody @Valid RegistrationRequest request
+   ) throws MessagingException {
+      service.register(request);
+      return ResponseEntity.accepted().build();
+   }
+
 }

@@ -1,5 +1,6 @@
 package com.parth.booknetwork.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.parth.booknetwork.role.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -47,6 +48,7 @@ public class User implements UserDetails, Principal {
     private boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<Role> roles;
 
     @CreatedDate

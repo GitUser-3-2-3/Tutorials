@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="CargoProjects">
+    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8f17550e-89de-424f-b848-8a1ee7e4783f" name="Changes" comment="guesser game">
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/cfg-if-103df48f3681db04/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/cfg-if-103df48f3681db04/lib-cfg_if" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/cfg-if-103df48f3681db04/lib-cfg_if.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/getrandom-5edefd413aa6a79b/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/getrandom-5edefd413aa6a79b/lib-getrandom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/getrandom-5edefd413aa6a79b/lib-getrandom.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/libc-26ae5ba25f20e782/build-script-build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/libc-26ae5ba25f20e782/build-script-build-script-build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/libc-26ae5ba25f20e782/dep-build-script-build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/libc-26ae5ba25f20e782/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/libc-4cf6e1b75c568811/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/libc-4cf6e1b75c568811/lib-libc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/libc-4cf6e1b75c568811/lib-libc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/libc-eb9428783d74b463/run-build-script-build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/libc-eb9428783d74b463/run-build-script-build-script-build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/ppv-lite86-47b672984d47652d/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/ppv-lite86-47b672984d47652d/lib-ppv_lite86" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/ppv-lite86-47b672984d47652d/lib-ppv_lite86.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/rand-6c7b1e0eec2623f4/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/rand-6c7b1e0eec2623f4/lib-rand" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/rand-6c7b1e0eec2623f4/lib-rand.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/rand_chacha-83f7c028bba797df/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/rand_chacha-83f7c028bba797df/lib-rand_chacha" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/rand_chacha-83f7c028bba797df/lib-rand_chacha.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/rand_core-47205c73991ec7ac/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/rand_core-47205c73991ec7ac/lib-rand_core" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/.fingerprint/rand_core-47205c73991ec7ac/lib-rand_core.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/build/libc-26ae5ba25f20e782/build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/build/libc-26ae5ba25f20e782/build_script_build-26ae5ba25f20e782" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/build/libc-26ae5ba25f20e782/build_script_build-26ae5ba25f20e782.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/build/libc-eb9428783d74b463/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/build/libc-eb9428783d74b463/output" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/build/libc-eb9428783d74b463/root-output" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/debug/build/libc-eb9428783d74b463/stderr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/.rustc_info.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Rust File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;GitUser-3-2-3&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/GitUser-3-2-3/Tutorials.git&quot;,
+    &quot;accountId&quot;: &quot;1cf00d13-9feb-45c8-ac2e-9f809c6c6672&quot;
+  }
+}</component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="9mtds4h5" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2ic4lcY6RW6Q0bcExjf9PiNrcuw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Cargo.Run.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.rust.reset.selective.auto.import&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/parth/Tutorials/Rust/The Book/Chapters/src/com.parth.chapters&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.disableDetachedFileInspection/Users/parth/Tutorials/Rust/The Book/Chapters/src/com.parth.chapter1/guesser_game.rs&quot;: &quot;true&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com.parth.chapters" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/chapters" />
+      <recent name="$PROJECT_DIR$/src/chapter2" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+      <option name="command" value="run --package Chapters --bin Chapters" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <option name="emulateTerminal" value="true" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="withSudo" value="false" />
+      <option name="buildTarget" value="REMOTE" />
+      <option name="backtrace" value="SHORT" />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8f17550e-89de-424f-b848-8a1ee7e4783f" name="Changes" comment="" />
+      <created>1719776683248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1719776683248</updated>
+      <workItem from="1719776684594" duration="1242000" />
+    </task>
+    <task id="LOCAL-00001" summary="guesser game">
+      <option name="closed" value="true" />
+      <created>1719777433468</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1719777433468</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="guesser game" />
+    <option name="LAST_COMMIT_MESSAGE" value="guesser game" />
+  </component>
+</project>

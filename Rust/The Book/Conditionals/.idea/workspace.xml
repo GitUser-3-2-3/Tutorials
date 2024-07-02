@@ -7,11 +7,11 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f17550e-89de-424f-b848-8a1ee7e4783f" name="Changes" comment="guesser game">
-      <change afterPath="$PROJECT_DIR$/../Conditionals/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Conditionals/Cargo.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Conditionals/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Conditionals/src/main.rs" afterDir="false" />
+    <list default="true" id="a923d4cb-adda-473b-97fb-b241a98df609" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Iterators/.idea/Iterators.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Iterators/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Iterators/.idea/modules.xml" afterDir="false" />
@@ -29,6 +29,9 @@
       <change afterPath="$PROJECT_DIR$/../Iterators/target/debug/.fingerprint/Iterators-a94a45a66930dc5f/invoked.timestamp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Iterators/target/debug/.fingerprint/Iterators-a94a45a66930dc5f/test-lib-Iterators" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Iterators/target/debug/.fingerprint/Iterators-a94a45a66930dc5f/test-lib-Iterators.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Ownership/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Ownership/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Ownership/src/main.rs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Variables/target/debug/incremental/Variables-1oxrv4pvyze9o/s-gxmhj3znou-1b5my0-agqfg453cutbnwfzom6ntmxsr/17k8e0g85f6zpsdk.o" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Variables/target/debug/incremental/Variables-1oxrv4pvyze9o/s-gxmhj3znou-1b5my0-agqfg453cutbnwfzom6ntmxsr/2426h6mofk53hmc4.o" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Variables/target/debug/incremental/Variables-1oxrv4pvyze9o/s-gxmhj3znou-1b5my0-agqfg453cutbnwfzom6ntmxsr/31cc2ilka0n75te5.o" afterDir="false" />
@@ -41,20 +44,12 @@
       <change afterPath="$PROJECT_DIR$/../Variables/target/debug/incremental/Variables-1oxrv4pvyze9o/s-gxmhj3znou-1b5my0.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Variables/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../Variables/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Variables/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Variables/target/.rustc_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/.rustc_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../guesser_game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../guesser_game/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Rust File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
@@ -72,12 +67,12 @@
   }
 }</component>
   <component name="MacroExpansionManager">
-    <option name="directoryName" value="9mtds4h5" />
+    <option name="directoryName" value="9fa6lytc" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 8
 }</component>
-  <component name="ProjectId" id="2ic4lcY6RW6Q0bcExjf9PiNrcuw" />
+  <component name="ProjectId" id="2idSdXcYkkf3AU2elOQrWFgQeQm" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -86,37 +81,26 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Cargo.Run.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.rust.reset.selective.auto.import&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/parth/Tutorials/Rust/The Book/guesser_game&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
-    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
-    &quot;org.rust.disableDetachedFileInspection/Users/parth/Tutorials/Rust/The Book/Chapters/src/com.parth.chapter1/guesser_game.rs&quot;: &quot;true&quot;,
-    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Rainbow Brackets Lite&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Cargo.Run.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.rust.reset.selective.auto.import": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
+    "org.rust.first.attach.projects": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/com.parth.chapters" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/chapters" />
-      <recent name="$PROJECT_DIR$/src/chapter2" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
-      <option name="command" value="run --package Chapters --bin Chapters" />
+      <option name="command" value="run --package Conditionals --bin Conditionals" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
       <option name="emulateTerminal" value="true" />
@@ -139,54 +123,20 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8f17550e-89de-424f-b848-8a1ee7e4783f" name="Changes" comment="" />
-      <created>1719776683248</created>
+      <changelist id="a923d4cb-adda-473b-97fb-b241a98df609" name="Changes" comment="" />
+      <created>1719819048470</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1719776683248</updated>
-      <workItem from="1719776684594" duration="1242000" />
-      <workItem from="1719777962052" duration="449000" />
-      <workItem from="1719778416840" duration="111000" />
-      <workItem from="1719778535176" duration="15000" />
-      <workItem from="1719778557179" duration="55000" />
-      <workItem from="1719800410721" duration="1339000" />
-      <workItem from="1719802678738" duration="153000" />
-      <workItem from="1719806329571" duration="434000" />
-      <workItem from="1719887946698" duration="794000" />
-      <workItem from="1719890846613" duration="47000" />
+      <updated>1719819048470</updated>
+      <workItem from="1719819049902" duration="6495000" />
+      <workItem from="1719887909653" duration="3700000" />
     </task>
-    <task id="LOCAL-00001" summary="guesser game">
-      <option name="closed" value="true" />
-      <created>1719777433468</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1719777433468</updated>
-    </task>
-    <task id="LOCAL-00002" summary="guesser game">
-      <option name="closed" value="true" />
-      <created>1719778025650</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1719778025650</updated>
-    </task>
-    <task id="LOCAL-00003" summary="guesser game">
-      <option name="closed" value="true" />
-      <created>1719778082918</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1719778082918</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="guesser game" />
-    <option name="LAST_COMMIT_MESSAGE" value="guesser game" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

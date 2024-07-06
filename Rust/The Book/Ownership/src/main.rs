@@ -1,14 +1,49 @@
-fn main() {
-    copy_and_move_3();
-    remove_it_dammit();
+#![allow(dead_code)]
+
+fn main() {}
+
+fn first_word_improved(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[..i];
+        }
+    }
+
+    return &s[..];
 }
 
-// fn copy_and_move() {
-//     let v: Vec<String> = vec![String::from("Hello World")];
-//     let s_ref = &v[0];
-//     let s = *s_ref;
-// }
+fn first_word_1(s: &String) -> usize {
+    let bytes = s.as_bytes();
 
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    return s.len();
+}
+
+fn first_word_2(s: &String) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[..i];
+        }
+    }
+
+    return &s[..];
+}
+
+/*fn copy_and_move() {
+    let v: Vec<String> = vec![String::from("Hello World")];
+    let s_ref = &v[0];
+    let s = *s_ref;
+}
+*/
 fn remove_it_dammit() {
     let mut v = vec![String::from("Hello World")];
     let mut s = v.remove(0);
@@ -49,7 +84,7 @@ fn add_big_strings_2(dst: &mut Vec<String>, src: &[String]) {
         .max_by_key(|s| s.len())
         .unwrap();
 
-    let to_add: Vec<String> = src.iter()
+    let _to_add: Vec<String> = src.iter()
         .filter(|s| s.len() > largest.len())
         .cloned()
         .collect();
@@ -68,12 +103,12 @@ fn add_big_strings_3(dst: &mut Vec<String>, src: &[String]) {
     }
 }
 
-// fn _stringify_name_with_reference(name: &Vec<String>) -> String {
-//     name.push(String::from("Esq."));
-//     let full = name.join(" ");
-//     return full;
-// }
-
+/*fn _stringify_name_with_reference(name: &Vec<String>) -> String {
+    name.push(String::from("Esq."));
+    let full = name.join(" ");
+    return full;
+}
+*/
 fn _stringify_name_with_title_cloning(name: &Vec<String>) -> String {
     let mut name_clone = name.clone();
     name_clone.push(String::from("Esq."));

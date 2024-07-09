@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 const z = 20 * 10
@@ -15,7 +16,82 @@ type person struct {
 func main() {
 	println()
 
-	anonStructs()
+	exercise5()
+}
+
+func blankSwitch() {
+	words := []string{"a", "cow", "smile", "gopher", "octopus", "anthropologists"}
+
+	for _, word := range words {
+		switch wordLen := len(word); {
+		case wordLen < 5:
+			fmt.Println("length is too short")
+		case wordLen > 10:
+			fmt.Println("length too long")
+		default:
+			fmt.Println("just the right length")
+		}
+	}
+}
+
+func switchStatements() {
+	words := []string{"a", "cow", "smile", "gopher", "octopus", "anthropologists"}
+
+outer:
+	for _, word := range words {
+		switch size := len(word); size {
+		case 1, 2, 3, 4:
+			fmt.Println(word, "the length is too short")
+		case 5:
+			wordLength := len(word)
+			fmt.Println(word, "this is just the right length", wordLength)
+			break outer
+		case 6, 7, 8, 9:
+		default:
+			fmt.Println("word is too long")
+		}
+	}
+}
+
+func labels() {
+	samples := []string{"hello", "apple_n!"}
+
+outer:
+	for _, sample := range samples {
+		for i, r := range sample {
+			fmt.Println(i, r, string(r))
+			if r == 'l' {
+				continue outer
+			}
+		}
+		fmt.Println()
+	}
+}
+
+func forRange() {
+	m := map[string]int{
+		"a": 1,
+		"b": 2,
+		"c": 3,
+	}
+
+	for i := 0; i < 3; i++ {
+		fmt.Println("Loop ", i)
+		for k, v := range m {
+			fmt.Println(k, v)
+		}
+	}
+}
+
+func shadowingVar() {
+
+	if n := rand.Intn(10); n == 0 {
+		fmt.Println("that's too low")
+	} else if n > 5 {
+		fmt.Println("that's too big")
+	} else {
+		fmt.Println("that's a good number")
+	}
 }
 
 func anonStructs() {

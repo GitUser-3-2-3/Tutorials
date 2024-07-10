@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"os"
 )
 
 type MyFuncOpts struct {
@@ -15,12 +14,52 @@ type MyFuncOpts struct {
 func main() {
 	println()
 
-	result, remainder, err := divAndRemainder(23, 3)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+	multConsume()
+}
+
+func makeMult(base int) func(int) int {
+	return func(factor int) int {
+		return base * factor
 	}
-	fmt.Println(result, remainder)
+}
+
+func multConsume() {
+	twoBase := makeMult(2)
+	threeBase := makeMult(3)
+
+	for i := 0; i < 3; i++ {
+		fmt.Println(twoBase(i), threeBase(i))
+	}
+}
+
+func anon() {
+	f := func(j int) {
+		fmt.Println("printing ", j, " from inside the function")
+	}
+
+	for i := 0; i < 5; i++ {
+		f(i)
+	}
+
+	for i := 0; i < 5; i++ {
+		func(j int) {
+			fmt.Println("printing ", j, " from anon func")
+		}(i)
+	}
+}
+
+func f1(a string) int {
+	return len(a)
+}
+
+func f2(a string) int {
+	total := 0
+	for _, v := range a {
+		fmt.Println(v)
+		total += int(v)
+	}
+
+	return total
 }
 
 func addToBase(base int, vals ...int) []int {

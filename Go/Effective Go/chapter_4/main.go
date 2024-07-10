@@ -14,7 +14,7 @@ type MyFuncOpts struct {
 func main() {
 	println()
 
-	multConsume()
+	prefixer()
 }
 
 func makeMult(base int) func(int) int {

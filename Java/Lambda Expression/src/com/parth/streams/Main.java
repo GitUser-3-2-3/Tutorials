@@ -1,5 +1,6 @@
 package com.parth.streams;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -23,7 +24,7 @@ public class Main {
     }
 
     public static void secondMethod() {
-        List<String> strings = List.of("I", "am", "a", "List", "of", "Strings");
+        List<String> strings = List.of("I", "am", "a", "List", "of", "Strings", "added", "String", "are", "wanted");
 
         /*
         Stream<String> stream = strings.stream();
@@ -58,7 +59,7 @@ public class Main {
             // .sorted((s1, s2) -> s1.compareToIgnoreCase(s2))
             .sorted(String::compareToIgnoreCase)
             .skip(2)
-            .limit(4)
+            .limit(10)
             .toList();
         System.out.println(list3);
     }

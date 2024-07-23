@@ -11,39 +11,39 @@ public class Jukebox1 {
     }
 
     public void go() {
-        List<Song> songList = MockSongs.getSongs();
-        System.out.println(songList + "\n");
+        List<SongV1> songV1List = MockSongs.getSongs();
+        System.out.println(songV1List + "\n");
 /*
         TitleCompare titleCompare = new TitleCompare();
-        songList.sort(titleCompare);
-        System.out.println(songList);
+        songV1List.sort(titleCompare);
+        System.out.println(songV1List);
 
         ArtistCompare artistCompare = new ArtistCompare();
-        songList.sort(artistCompare);
-        System.out.println(songList);
+        songV1List.sort(artistCompare);
+        System.out.println(songV1List);
 */
-        songList.sort(Comparator.comparing(Song::getTitle));
-        System.out.println(songList + "\n");
+        songV1List.sort(Comparator.comparing(SongV1::getTitle));
+        System.out.println(songV1List + "\n");
 
-        songList.sort(Comparator.comparing(Song::getArtist));
-        System.out.println(songList + "\n");
+        songV1List.sort(Comparator.comparing(SongV1::getArtist));
+        System.out.println(songV1List + "\n");
 
-        songList.sort(Comparator.comparing(Song::getBpm));
-        System.out.println(songList + "\n");
+        songV1List.sort(Comparator.comparing(SongV1::getBpm));
+        System.out.println(songV1List + "\n");
     }
 }
 
 /*
-class TitleCompare implements Comparator<Song> {
+class TitleCompare implements Comparator<SongV1> {
     @Override
-    public int compare(Song one, Song two) {
+    public int compare(SongV1 one, SongV1 two) {
         return one.getTitle().compareTo(two.getTitle());
     }
 }
 
-class ArtistCompare implements Comparator<Song> {
+class ArtistCompare implements Comparator<SongV1> {
     @Override
-    public int compare(Song one, Song two) {
+    public int compare(SongV1 one, SongV1 two) {
         return one.getArtist().compareTo(two.getArtist());
     }
 }

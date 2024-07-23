@@ -18,16 +18,16 @@ public class MockSongs {
         return songs;
     }
 
-    public static List<Song> getSongs() {
-        List<Song> songs = new ArrayList<>();
+    public static List<SongV1> getSongs() {
+        List<SongV1> songV1s = new ArrayList<>();
 
-        songs.add(new Song("somersault", "zero 7", 147));
-        songs.add(new Song("cassidy", "grateful dead", 158));
-        songs.add(new Song("$10", "hitchhiker", 140));
-        songs.add(new Song("havana", "cabello", 105));
-        songs.add(new Song("Cassidy", "grateful dead", 158));
-        songs.add(new Song("50 ways", "simon", 102));
+        songV1s.add(new SongV1("somersault", "zero 7", 147));
+        songV1s.add(new SongV1("cassidy", "grateful dead", 158));
+        songV1s.add(new SongV1("$10", "hitchhiker", 140));
+        songV1s.add(new SongV1("havana", "cabello", 105));
+        songV1s.add(new SongV1("Cassidy", "grateful dead", 158));
+        songV1s.add(new SongV1("50 ways", "simon", 102));
 
-        return songs;
+        return songV1s;
     }
 }

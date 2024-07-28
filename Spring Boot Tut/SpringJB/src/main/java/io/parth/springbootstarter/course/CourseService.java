@@ -1,10 +1,10 @@
 package io.parth.springbootstarter.course;
 
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class CourseService {
@@ -16,14 +16,6 @@ public class CourseService {
     }
 
     public List<Course> getAllCourses(String topicId) {
-/*
-        List<Course> course = new ArrayList<>();
-
-        courseRepository.findByTopicId(topicId)
-                .forEach(course::add);
-        return course;
-*/
-
         return new ArrayList<>(courseRepository.findByTopicId(topicId));
     }
 

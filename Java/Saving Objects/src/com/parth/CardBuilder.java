@@ -94,15 +94,13 @@ public class CardBuilder {
     }
 
     private void saveFile(File file) {
-        try {
-            BufferedWriter writer = new BufferedWriter(
-                new FileWriter(file)
-            );
+        try (BufferedWriter writer = new BufferedWriter(
+            new FileWriter(file)
+        )) {
             for (QuizCard card : cardList) {
                 writer.write(card.getQuestion() + "/");
                 writer.write(card.getAnswer() + "\n");
             }
-            writer.close();
         } catch (IOException e) {
             System.out.println("Exception: " + e);
         }

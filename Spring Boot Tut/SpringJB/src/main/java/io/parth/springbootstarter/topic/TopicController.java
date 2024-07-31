@@ -54,8 +54,7 @@ public class TopicController {
 
     @PutMapping("/{topicId}")
     public ResponseEntity<Map<String, String>> updateTopic(
-            @RequestBody Topic topic,
-            @PathVariable String topicId
+            @RequestBody Topic topic, @PathVariable String topicId
     ) {
         Boolean isUpdated = service.updateTopic(topic, topicId);
         return getMapUpdateEntity(isUpdated);

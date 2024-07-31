@@ -23,7 +23,7 @@ public class CourseController {
 
     @GetMapping
     public ResponseEntity<List<Course>> getAllCourses(
-            @PathVariable String topicId
+        @PathVariable String topicId
     ) {
         List<Course> allCourses = service.getAllCourses(topicId);
 
@@ -36,8 +36,7 @@ public class CourseController {
 
     @GetMapping("/{courseId}")
     public ResponseEntity<Optional<Course>> getCourse(
-            @PathVariable String topicId,
-            @PathVariable String courseId
+        @PathVariable String topicId, @PathVariable String courseId
     ) {
         Optional<Course> topic = service.getCourse(topicId, courseId);
 
@@ -50,8 +49,7 @@ public class CourseController {
 
     @PostMapping
     public ResponseEntity<Map<String, String>> addCourse(
-            @RequestBody Course course,
-            @PathVariable String topicId
+        @RequestBody Course course, @PathVariable String topicId
     ) {
         course.setTopic(new Topic(topicId, "", ""));
 
@@ -61,9 +59,7 @@ public class CourseController {
 
     @PutMapping("/{courseId}")
     public ResponseEntity<Map<String, String>> updateCourse(
-            @RequestBody Course course,
-            @PathVariable String courseId,
-            @PathVariable String topicId
+        @RequestBody Course course, @PathVariable String courseId, @PathVariable String topicId
     ) {
         course.setTopic(new Topic(topicId, "", ""));
 
@@ -73,8 +69,7 @@ public class CourseController {
 
     @DeleteMapping("/{courseId}")
     public ResponseEntity<Map<String, String>> deleteCourse(
-            @PathVariable String topicId,
-            @PathVariable String courseId
+        @PathVariable String topicId, @PathVariable String courseId
     ) {
         Boolean isDeleted = service.deleteCourse(topicId, courseId);
         return getMapDeleteEntity(isDeleted);

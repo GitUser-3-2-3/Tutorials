@@ -1,27 +1,20 @@
-package com.parth.chatbox;
+package com.parth.threads;
 
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-public class PredictableLatch {
+public class PredictableSleep {
     public static void main(String[] args) {
-        System.out.println();
-
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        CountDownLatch latch = new CountDownLatch(1);
-
-        executor.execute(() -> waitForLatchThenPrint(latch));
-
+        executor.execute(PredictableSleep::sleepThenPrint);
         System.out.println("back in the main");
-        latch.countDown();
-
         executor.shutdown();
     }
 
-    private static void waitForLatchThenPrint(CountDownLatch latch) {
+    private static void sleepThenPrint() {
         try {
-            latch.await();
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException itrException) {
             System.out.println("Exception: " + itrException);
         }

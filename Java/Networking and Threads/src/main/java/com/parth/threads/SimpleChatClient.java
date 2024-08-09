@@ -7,13 +7,13 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.nio.channels.Channels;
 import java.nio.channels.SocketChannel;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static java.awt.BorderLayout.CENTER;
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static javax.swing.ScrollPaneConstants.*;
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class SimpleChatClient {

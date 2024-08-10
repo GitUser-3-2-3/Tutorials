@@ -1,7 +1,10 @@
 package com.parth.concurrency;
 
+import lombok.Getter;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class RyanAndMonicaTest {
     public static void main(String[] args) {
@@ -36,28 +39,28 @@ class RyanAndMonicaJob implements Runnable {
     }
 
     private void goShopping(final int amountToSpend) {
-        if (account.getBalance() > amountToSpend) {
-            System.out.println(name + " is about to spend");
-            account.spent(amountToSpend);
-            System.out.println(name + " finished spending");
-        } else {
-            System.out.println("You're poor you lil bitch!");
-        }
+        System.out.println(name + " is about to spend");
+        account.spent(name, amountToSpend);
+        System.out.println(name + " finished spending");
     }
 }
 
+@Getter
 class BankAccount {
-    private int balance = 100;
+    private final AtomicInteger balance = new AtomicInteger(100);
 
-    public int getBalance() {
-        return balance;
-    }
+    public void spent(final String name, final int amountToSpend) {
+        int initialBalance = balance.get();
 
-    public void spent(final int amountToSpend) {
-        if (amountToSpend > balance) {
-            balance = balance - amountToSpend;
+        if (initialBalance >= amountToSpend) {
+            boolean success = balance.compareAndSet(
+                initialBalance, initialBalance - amountToSpend
+            );
+            if (!success) {
+                System.out.println(name + " didn't spend the money");
+            }
         } else {
-            System.out.println("Overdrawn!");
+            System.out.println(name + "! You poor, you lil bitch!");
         }
     }
 }

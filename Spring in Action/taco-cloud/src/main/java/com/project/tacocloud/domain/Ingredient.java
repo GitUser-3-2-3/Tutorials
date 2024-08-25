@@ -3,7 +3,7 @@ package com.project.tacocloud.domain;
 import lombok.Data;
 
 @Data
-public class Ingredients {
+public class Ingredient {
     private final String id;
     private final String name;
     private final Type type;

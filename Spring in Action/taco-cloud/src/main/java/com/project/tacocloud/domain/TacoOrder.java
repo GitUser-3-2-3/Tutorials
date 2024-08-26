@@ -11,6 +11,7 @@ public class TacoOrder {
     private String deliveryName;
     private String deliveryStreet;
     private String deliveryCity;
+    private String deliveryState;
     private String deliveryZip;
 
     private String ccNumber;

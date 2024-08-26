@@ -1,6 +1,6 @@
 package com.project.tacocloud.util;
 
-import com.project.tacocloud.domain.Ingredient;
+import com.project.tacocloud.model.Ingredient;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.project.tacocloud.domain.Ingredient.Type;
+import static com.project.tacocloud.model.Ingredient.Type;
 
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {

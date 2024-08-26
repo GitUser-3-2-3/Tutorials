@@ -1,6 +1,6 @@
 package com.project.tacocloud.controller;
 
-import com.project.tacocloud.domain.TacoOrder;
+import com.project.tacocloud.model.TacoOrder;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

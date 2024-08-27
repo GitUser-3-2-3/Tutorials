@@ -1,6 +1,9 @@
 spring:
   datasource:
-    generate-unique-name: false
-    name: tacocloud
-    username: user
-    password: user
+    url: jdbc:postgresql://localhost:5432/tacocloud
+    username: postgres
+    password: qwerty1,0*
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update

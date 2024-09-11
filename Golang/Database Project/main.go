@@ -106,12 +106,12 @@ func (driver *Driver) Write(collection, resource string, values interface{}) err
 		return err
 	}
 
-	return err
+	return os.Rename(tempPath, finalPath)
 }
 
 func (driver *Driver) Read(collection, resource string, values interface{}) error {
 	if collection == "" {
-		return fmt.Errorf("missing collection - no place to save record")
+		return fmt.Errorf("missing collection - unable to read")
 	}
 	if resource == "" {
 		return fmt.Errorf("missing resource - unable to save record (no name)")
@@ -128,6 +128,31 @@ func (driver *Driver) Read(collection, resource string, values interface{}) erro
 	}
 
 	return json.Unmarshal(userData, values)
+}
+
+func (driver *Driver) ReadAll(collection string) ([]string, error) {
+
+	if collection == "" {
+		return nil, fmt.Errorf("missing collection - unable to read")
+	}
+
+	dir := filepath.Join(driver.dir, collection)
+	if _, err := stat(dir); err != nil {
+		return nil, err
+	}
+
+	files, _ := os.ReadDir(dir)
+	var records []string
+
+	for _, file := range files {
+		data, err := os.ReadFile(filepath.Join(dir, file.Name()))
+		if err != nil {
+			return nil, err
+		}
+
+		records = append(records, string(data))
+	}
+	return records, nil
 }
 
 func (driver *Driver) getOrCreateMutex(collection string) *sync.Mutex {
@@ -290,7 +315,7 @@ func main() {
 			Address: value.Address,
 		})
 		if err != nil {
-			fmt.Println("Error ", err)
+			_ = fmt.Errorf("error occured while inside 'Write'")
 		}
 	}
 

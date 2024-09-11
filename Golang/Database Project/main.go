@@ -9,8 +9,6 @@ import (
 	"sync"
 )
 
-const Version = "1.0.0"
-
 type (
 	Logger interface {
 		Fatal(string, ...interface{})
@@ -153,6 +151,29 @@ func (driver *Driver) ReadAll(collection string) ([]string, error) {
 		records = append(records, string(data))
 	}
 	return records, nil
+}
+
+func (driver *Driver) Delete(collection, resource string) error {
+	path := filepath.Join(collection, resource)
+
+	mutex := driver.getOrCreateMutex(collection)
+	mutex.Lock()
+	defer mutex.Unlock()
+
+	dir := filepath.Join(driver.dir, path)
+
+	switch file, err := stat(dir); {
+	case file == nil, err != nil:
+		return fmt.Errorf("unable to find file or directory named %v\n", path)
+
+	case file.Mode().IsDir():
+		return os.RemoveAll(dir)
+
+	case file.Mode().IsRegular():
+		return os.RemoveAll(dir + ".json")
+	}
+
+	return nil
 }
 
 func (driver *Driver) getOrCreateMutex(collection string) *sync.Mutex {
@@ -334,15 +355,16 @@ func main() {
 		}
 		allUsers = append(allUsers, employeeFound)
 	}
-	fmt.Println(allUsers)
 
-	/*
-		if err := database.Delete("user", "john"); err != nil {
-			fmt.Println("Error ", err)
-		}
+	jsonData, err := json.MarshalIndent(allUsers, "", "   ")
+	if err != nil {
+		fmt.Println("Error marshalling to Json: ", err)
+		return
+	}
 
-		if err := database.Delete("user", ""); err != nil {
-			fmt.Println("Error ", err)
-		}
-	*/
+	fmt.Println(string(jsonData))
+
+	if err := database.Delete("users", ""); err != nil {
+		fmt.Println("Error ", err)
+	}
 }

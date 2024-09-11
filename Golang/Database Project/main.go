@@ -3,15 +3,41 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/jcelliott/lumber"
+	"os"
+	"path/filepath"
+	"sync"
 )
 
-const Version = "1.0.1"
+const Version = "1.0.0"
+
+type (
+	Logger interface {
+		Fatal(string, ...interface{})
+		Error(string, ...interface{})
+		Warn(string, ...interface{})
+		Info(string, ...interface{})
+		Debug(string, ...interface{})
+		Trace(string, ...interface{})
+	}
+
+	Driver struct {
+		mutex   sync.Mutex
+		mutexes map[string]*sync.Mutex
+		dir     string
+		log     Logger
+	}
+)
 
 type Address struct {
 	City    string
 	State   string
 	Country string
 	PinCode json.Number
+}
+
+type Options struct {
+	Logger
 }
 
 type User struct {
@@ -22,10 +48,112 @@ type User struct {
 	Address Address
 }
 
-func main() {
-	directory := "./"
+func New(dir string, options *Options) (*Driver, error) {
+	dir = filepath.Clean(dir)
 
-	database, err := New(directory, nil)
+	opts := Options{}
+
+	if options != nil {
+		opts = *options
+	}
+
+	if opts.Logger == nil {
+		opts.Logger = lumber.NewConsoleLogger(lumber.INFO)
+	}
+
+	driver := Driver{
+		mutexes: make(map[string]*sync.Mutex),
+		dir:     dir,
+		log:     opts.Logger,
+	}
+
+	if _, err := os.Stat(dir); err != nil {
+		opts.Logger.Debug("Using '%s' (database already exists)\n", dir)
+		return &driver, nil
+	}
+
+	opts.Logger.Debug("Creating the database at '%s'...\n", dir)
+	return &driver, os.MkdirAll(dir, 0755)
+}
+
+func (driver *Driver) Write(collection, resource string, values interface{}) error {
+	if collection == "" {
+		return fmt.Errorf("missing collection - no place to save record")
+	}
+	if resource == "" {
+		return fmt.Errorf("missing resource - unable to save record (no name)")
+	}
+
+	mutex := driver.getOrCreateMutex(collection)
+	mutex.Lock()
+	defer mutex.Unlock()
+
+	dir := filepath.Join(driver.dir, collection)
+	finalPath := filepath.Join(dir, resource+".json")
+	tempPath := finalPath + ".tmp"
+
+	if err := os.MkdirAll(dir, 0755); err != nil {
+		return err
+	}
+
+	userData, err := json.MarshalIndent(values, "", "\t")
+	if err != nil {
+		return err
+	}
+
+	userData = append(userData, byte('\n'))
+	if err := os.WriteFile(tempPath, userData, 0644); err != nil {
+		return err
+	}
+
+	return err
+}
+
+func (driver *Driver) Read(collection, resource string, values interface{}) error {
+	if collection == "" {
+		return fmt.Errorf("missing collection - no place to save record")
+	}
+	if resource == "" {
+		return fmt.Errorf("missing resource - unable to save record (no name)")
+	}
+
+	record := filepath.Join(driver.dir, collection, resource)
+	if _, err := stat(record); err != nil {
+		return err
+	}
+
+	userData, err := os.ReadFile(record + ".json")
+	if err != nil {
+		return err
+	}
+
+	return json.Unmarshal(userData, values)
+}
+
+func (driver *Driver) getOrCreateMutex(collection string) *sync.Mutex {
+	driver.mutex.Lock()
+	defer driver.mutex.Unlock()
+
+	mutex, ok := driver.mutexes[collection]
+	if !ok {
+		mutex = &sync.Mutex{}
+		driver.mutexes[collection] = mutex
+	}
+
+	return mutex
+}
+
+func stat(path string) (file os.FileInfo, err error) {
+	if file, err = os.Stat(path); os.IsNotExist(err) {
+		file, err = os.Stat(path + ".json")
+	}
+	return
+}
+
+func main() {
+	dir := "./"
+
+	database, err := New(dir, nil)
 	if err != nil {
 		fmt.Println("Error ", err)
 	}
@@ -154,13 +282,16 @@ func main() {
 	}
 
 	for _, value := range employees {
-		database.Write("users", value.Name, User{
+		err := database.Write("users", value.Name, User{
 			Name:    value.Name,
 			Age:     value.Age,
 			Contact: value.Contact,
 			Company: value.Company,
 			Address: value.Address,
 		})
+		if err != nil {
+			fmt.Println("Error ", err)
+		}
 	}
 
 	records, err := database.ReadAll("users")

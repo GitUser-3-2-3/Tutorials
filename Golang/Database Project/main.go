@@ -198,10 +198,11 @@ func stat(path string) (file os.FileInfo, err error) {
 
 func main() {
 	dir := "./"
+	const Error = "ERROR: "
 
 	database, err := New(dir, nil)
 	if err != nil {
-		fmt.Println("Error ", err)
+		fmt.Println(Error, err)
 	}
 
 	employees := []User{
@@ -342,7 +343,7 @@ func main() {
 
 	records, err := database.ReadAll("users")
 	if err != nil {
-		fmt.Println("Error ", err)
+		fmt.Println(Error, err)
 	}
 	fmt.Println(records)
 
@@ -351,7 +352,7 @@ func main() {
 	for _, record := range records {
 		employeeFound := User{}
 		if err := json.Unmarshal([]byte(record), &employeeFound); err != nil {
-			fmt.Println("Error ", err)
+			fmt.Println(Error, err)
 		}
 		allUsers = append(allUsers, employeeFound)
 	}
@@ -365,6 +366,6 @@ func main() {
 	fmt.Println(string(jsonData))
 
 	if err := database.Delete("users", ""); err != nil {
-		fmt.Println("Error ", err)
+		fmt.Println(Error, err)
 	}
 }

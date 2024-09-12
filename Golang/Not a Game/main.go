@@ -1,17 +1,41 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"os"
+	"strings"
+	"time"
 )
 
-//goland:noinspection GoUnusedConst
+//goland:noinspection GoSnakeCaseUsage, GoUnusedConst
 const (
 	NOTHING = 0
 	WALL    = 1
 	PLAYER  = 69
+
+	MAX_SAMPLES = 100
 )
+
+type Stats struct {
+	start  time.Time
+	frames int
+	fps    float64
+}
+
+func newStats() *Stats {
+	return &Stats{
+		start: time.Now(),
+	}
+}
+
+func (stats *Stats) update() {
+	stats.frames++
+	if stats.frames == MAX_SAMPLES {
+		stats.fps = float64(stats.frames) / time.Since(stats.start).Seconds()
+		stats.frames = 0
+		stats.start = time.Now()
+	}
+}
 
 type Level struct {
 	width, height int
@@ -20,10 +44,12 @@ type Level struct {
 
 func newLevel(width, height int) *Level {
 	data := make([][]byte, height)
-
 	for h := 0; h < height; h++ {
+		data[h] = make([]byte, width)
 		for w := 0; w < width; w++ {
-			data[h] = make([]byte, width)
+			if h == 0 || h == height-1 || w == 0 || w == width-1 {
+				data[h][w] = WALL
+			}
 		}
 	}
 	return &Level{
@@ -33,28 +59,18 @@ func newLevel(width, height int) *Level {
 	}
 }
 
-// todo -> potential bug! check for merger with newLevel before being used in renderWalls
-func setWalls(level *Level) {
-	for h := 0; h < level.height; h++ {
-		for w := 0; w < level.width; w++ {
-			if h == 0 || h == level.height-1 || w == 0 || w == level.width-1 {
-				level.data[h][w] = WALL
-			}
-		}
-	}
-}
-
 type Game struct {
 	isRunning bool
 	level     *Level
-	drawBuf   *bytes.Buffer
+	stats     *Stats
+	drawBuf   strings.Builder
 }
 
 func newGame(width, height int) *Game {
 	lvl := newLevel(width, height)
 	return &Game{
-		level:   lvl,
-		drawBuf: new(bytes.Buffer),
+		level: lvl,
+		stats: newStats(),
 	}
 }
 
@@ -64,14 +80,11 @@ func (game *Game) start() {
 }
 
 func (game *Game) loop() {
-	index := 0
 	for game.isRunning {
 		game.update()
 		game.render()
-		if index == 10 {
-			break
-		}
-		index++
+		game.stats.update()
+		time.Sleep(time.Millisecond * 15)
 	}
 }
 
@@ -85,9 +98,7 @@ func (game *Game) renderWalls() {
 
 	for h := 0; h < height; h++ {
 		for w := 0; w < width; w++ {
-
 			var data = game.level.data[h][w]
-
 			if data == NOTHING {
 				game.drawBuf.WriteString(" ")
 			}
@@ -99,8 +110,18 @@ func (game *Game) renderWalls() {
 	}
 }
 
+func (game *Game) renderStats() {
+	game.drawBuf.WriteString("--STATS\n")
+	game.drawBuf.WriteString(fmt.Sprintf("FPS: %.2f", game.stats.fps))
+}
+
 func (game *Game) render() {
+	game.drawBuf.Reset()
+	if _, err := fmt.Fprint(os.Stdout, "\033[2J\033[1;1H"); err != nil {
+		fmt.Printf("ERROR in 'render': %v", err)
+	}
 	game.renderWalls()
+	game.renderStats()
 	if _, err := fmt.Fprint(os.Stdout, game.drawBuf.String()); err != nil {
 		fmt.Printf("ERROR in 'render': %v", err)
 	}
@@ -111,6 +132,5 @@ func main() {
 	height := 15
 
 	game := newGame(width, height)
-	setWalls(game.level)
 	game.start()
 }

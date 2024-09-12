@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+//goland:noinspection GoUnusedConst
 const (
 	NOTHING = 0
 	WALL    = 1
@@ -32,7 +33,7 @@ func newLevel(width, height int) *Level {
 	}
 }
 
-// todo -> potential bug! check for merger with newLevel before being used in renderLevel
+// todo -> potential bug! check for merger with newLevel before being used in renderWalls
 func setWalls(level *Level) {
 	for h := 0; h < level.height; h++ {
 		for w := 0; w < level.width; w++ {
@@ -63,9 +64,14 @@ func (game *Game) start() {
 }
 
 func (game *Game) loop() {
+	index := 0
 	for game.isRunning {
 		game.update()
 		game.render()
+		if index == 10 {
+			break
+		}
+		index++
 	}
 }
 
@@ -73,15 +79,19 @@ func (game *Game) update() {
 	// update
 }
 
-func (game *Game) renderLevel() {
-	setWalls(game.level)
+func (game *Game) renderWalls() {
+	var height = game.level.height
+	var width = game.level.width
 
-	for h := 0; h < game.level.height; h++ {
-		for w := 0; w < game.level.width; w++ {
+	for h := 0; h < height; h++ {
+		for w := 0; w < width; w++ {
 
-			if game.level.data[h][w] == NOTHING {
+			var data = game.level.data[h][w]
+
+			if data == NOTHING {
 				game.drawBuf.WriteString(" ")
-			} else if game.level.data[h][w] == WALL {
+			}
+			if data == WALL {
 				game.drawBuf.WriteString("▣")
 			}
 		}
@@ -90,13 +100,17 @@ func (game *Game) renderLevel() {
 }
 
 func (game *Game) render() {
-	game.renderLevel()
+	game.renderWalls()
 	if _, err := fmt.Fprint(os.Stdout, game.drawBuf.String()); err != nil {
 		fmt.Printf("ERROR in 'render': %v", err)
 	}
 }
 
 func main() {
-	width := 80
+	width := 90
 	height := 15
+
+	game := newGame(width, height)
+	setWalls(game.level)
+	game.start()
 }

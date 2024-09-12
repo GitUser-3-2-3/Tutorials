@@ -24,11 +24,11 @@ func (engine *electricEngine) milesLeft() uint8 {
 	return engine.kwh * engine.mpkwh
 }
 
-func canMakeIt(engine Engine, miles uint8) {
+func canMakeIt(engine Engine, miles uint8) string {
 	if miles > engine.milesLeft() {
-		fmt.Println("Sorry you don't have enough miles left")
+		return "Sorry you don't have enough miles left"
 	} else {
-		fmt.Println("You can make the trip")
+		return "You can make the trip"
 	}
 }
 
@@ -53,6 +53,10 @@ func main() {
 	fmt.Println(myEngine2)
 
 	fmt.Printf("Total miles left in the tank %v\n", myEngine.milesLeft())
-	canMakeIt(&myElectricEngine, 42)
-	canMakeIt(&myEngine, 42)
+	fmt.Printf("Total miles left in the tank %v\n", myElectricEngine.milesLeft())
+
+	forElectric := canMakeIt(&myElectricEngine, 42)
+	forGas := canMakeIt(&myEngine, 42)
+	fmt.Println(forElectric)
+	fmt.Println(forGas)
 }

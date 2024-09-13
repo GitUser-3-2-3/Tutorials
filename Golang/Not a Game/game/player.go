@@ -6,5 +6,8 @@ type Player struct {
 }
 
 func (player *Player) update() {
-	// update
+	player.pos.x += 1
+	if player.pos.x == player.level.width-1 {
+		player.pos.x -= 1
+	}
 }

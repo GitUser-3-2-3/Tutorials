@@ -44,10 +44,13 @@ func (game *Game) loop() {
 }
 
 func (game *Game) update() {
+	game.level.set(game.player.pos, NOTHING)
 	game.player.update()
+	game.level.set(game.player.pos, PLAYER)
 }
 
 func (game *Game) renderLevels() {
+
 	var height = game.level.height
 	var width = game.level.width
 
@@ -59,10 +62,10 @@ func (game *Game) renderLevels() {
 				game.drawBuf.WriteString(" ")
 			}
 			if data == WALL {
-				game.drawBuf.WriteString("▣")
+				game.drawBuf.WriteString("⑆")
 			}
 			if data == PLAYER {
-				game.drawBuf.WriteString("◎")
+				game.drawBuf.WriteString("☃")
 			}
 		}
 		game.drawBuf.WriteString("\n")

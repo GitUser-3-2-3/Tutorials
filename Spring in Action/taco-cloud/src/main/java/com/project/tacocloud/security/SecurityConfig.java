@@ -1,7 +1,6 @@
 package com.project.tacocloud.security;
 
 import com.project.tacocloud.data.UserRepository;
-import com.project.tacocloud.model.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

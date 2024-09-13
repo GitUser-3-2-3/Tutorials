@@ -12,6 +12,8 @@ import static com.project.tacocloud.model.Ingredient.Type;
 @SpringBootApplication
 public class TacoCloudApplication {
 
+    // todo -> create a taco user class and check for the changes you've made in the recent chapters from the book.
+
     public static void main(String[] args) {
         SpringApplication.run(TacoCloudApplication.class, args);
     }

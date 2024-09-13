@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"os/user"
@@ -75,8 +78,70 @@ func addNewSliceElementToFile(filePath string, newRepos []string) {
 	dumpStringSliceToFile(repos, filePath)
 }
 
+func parseFileLinesToSlice(filePath string) []string {
+	file := openFile(filePath)
+	defer func() {
+		if err := file.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	scanner := bufio.Scanner{}
+	var lines []string
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		if err != io.EOF {
+			panic(err)
+		}
+	}
+	return lines
+}
+
+func openFile(filePath string) *os.File {
+	file, err := os.OpenFile(filePath, os.O_APPEND|os.O_WRONLY, 0755)
+
+	if err != nil {
+		if os.IsNotExist(err) {
+			if _, err := os.Create(filePath); err != nil {
+				panic(err)
+			}
+		} else {
+			panic(err)
+		}
+	}
+	return file
+}
+
+func joinSlices(new []string, existing []string) []string {
+	for _, val := range new {
+		if !sliceContains(existing, val) {
+			existing = append(existing, val)
+		}
+	}
+	return existing
+}
+
+func sliceContains(slice []string, value string) bool {
+	for _, v := range slice {
+		if v == value {
+			return true
+		}
+	}
+	return false
+}
+
+func dumpStringSliceToFile(repos []string, filePath string) {
+	content := strings.Join(repos, "\n")
+	if err := ioutil.WriteFile(filePath, []byte(content), 0755); err != nil {
+		return
+	}
+}
+
 func stats(email string) {
-	print("stats")
+	print(email)
 }
 
 func main() {

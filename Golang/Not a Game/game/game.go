@@ -84,6 +84,7 @@ func (game *Game) render() {
 	}
 	game.renderLevels()
 	game.renderStats()
+	// learn how Fprint works
 	if _, err := fmt.Fprint(os.Stdout, game.drawBuf.String()); err != nil {
 		fmt.Printf("ERROR in 'render': %v", err)
 	}

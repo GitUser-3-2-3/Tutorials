@@ -2,10 +2,8 @@ package main
 
 import (
 	"bufio"
-	"flag"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/user"
@@ -135,26 +133,7 @@ func sliceContains(slice []string, value string) bool {
 
 func dumpStringSliceToFile(repos []string, filePath string) {
 	content := strings.Join(repos, "\n")
-	if err := ioutil.WriteFile(filePath, []byte(content), 0755); err != nil {
+	if err := os.WriteFile(filePath, []byte(content), 0755); err != nil {
 		return
 	}
-}
-
-func stats(email string) {
-	print(email)
-}
-
-func main() {
-	var folder string
-	var email string
-
-	flag.StringVar(&folder, "add", "", "add a new folder to scan for Git repositories")
-	flag.StringVar(&email, "email", "your@email.com", "the email to scan")
-	flag.Parse()
-
-	if folder != "" {
-		scan(folder)
-		return
-	}
-	stats(email)
 }

@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/src-d/go-git"
-	"gopkg.in/src-d/go-git.v4/plumbing/object"
+	"github.com/go-git/go-git/v5"
+	"github.com/go-git/go-git/v5/plumbing/object"
 	"sort"
 	"time"
 )

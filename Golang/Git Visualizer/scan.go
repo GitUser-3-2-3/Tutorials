@@ -84,15 +84,16 @@ func parseFileLinesToSlice(filePath string) []string {
 		}
 	}()
 
-	scanner := bufio.Scanner{}
+	reader := bufio.NewReader(file)
 	var lines []string
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		if err != io.EOF {
-			panic(err)
+	for {
+		line, err := reader.ReadString('\n')
+		if err != nil && err != io.EOF {
+			log.Fatal(err)
+		}
+		lines = append(lines, strings.TrimSpace(line))
+		if err == io.EOF {
+			break
 		}
 	}
 	return lines

@@ -1,6 +1,7 @@
 package com.project.tacocloud.security;
 
 import com.project.tacocloud.data.UserRepository;
+import com.project.tacocloud.model.TacoUser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,7 +22,7 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepo) {
         return username -> {
-            User user = userRepo.findUserByUsername(username);
+            TacoUser user = userRepo.findUserByUsername(username);
             if (user != null) return user;
 
             throw new UsernameNotFoundException("User '" + username + "' not found");

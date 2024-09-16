@@ -15,8 +15,8 @@ public class RegistrationForm {
     private String zip;
     private String phone;
 
-    public User toUser(PasswordEncoder passwordEncoder) {
-        return new User(
+    public TacoUser toUser(PasswordEncoder passwordEncoder) {
+        return new TacoUser(
             username, passwordEncoder.encode(password),
             fullName, street, city, state, zip, phone
         );

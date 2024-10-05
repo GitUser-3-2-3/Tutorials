@@ -1,8 +1,10 @@
 package com.project.sec.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
@@ -13,6 +15,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Service
 public class JwtService {
@@ -43,6 +46,32 @@ public class JwtService {
     private Key secretKey() {
         byte[] key = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(key);
+    }
+
+    public String extractUsername(String jwtToken) {
+        return extractClaim(jwtToken, Claims::getSubject);
+    }
+
+    private <T> T extractClaim(String jwtToken, Function<Claims, T> claimResolver) {
+        final Claims claims = extractAllClaims(jwtToken);
+        return claimResolver.apply(claims);
+    }
+
+    private Claims extractAllClaims(String jwtToken) {
+        return Jwts.parser()
+            .verifyWith((SecretKey) secretKey())
+            .build().parseSignedClaims(jwtToken)
+            .getPayload();
+    }
+
+    public boolean validateToken(String jwtToken, UserDetails userDetails) {
+        final String username = userDetails.getUsername();
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(jwtToken);
+    }
+
+    private boolean isTokenExpired(String jwtToken) {
+        Date tokenExpiration = extractClaim(jwtToken, Claims::getExpiration);
+        return tokenExpiration.before(new Date());
     }
 }
 

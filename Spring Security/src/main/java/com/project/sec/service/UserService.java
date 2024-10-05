@@ -37,10 +37,11 @@ public class UserService {
         Authentication authentication = authManager.authenticate(
             new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())
         );
-        if (authentication.isAuthenticated()) {
-            String token = jwtService.generateToken();
-        }
         return authentication.isAuthenticated();
+    }
+
+    public String generateToken(Users user) {
+        return jwtService.generateToken(user.getUsername());
     }
 }
 

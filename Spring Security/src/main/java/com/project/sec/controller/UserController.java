@@ -32,9 +32,18 @@ public class UserController {
     public ResponseEntity<String> login(@RequestBody @Valid Users user) {
         boolean verified = userService.verifyUser(user);
 
-        if (!verified) {
-            return new ResponseEntity<>("Login Failed", UNAUTHORIZED);
+        if (verified) {
+            String jwtToken = userService.generateToken(user);
+            return new ResponseEntity<>(jwtToken, OK);
         }
-        return new ResponseEntity<>("Login Successful", OK);
+        return new ResponseEntity<>("Login Failed", UNAUTHORIZED);
     }
 }
+
+
+
+
+
+
+
+

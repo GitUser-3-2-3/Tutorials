@@ -34,7 +34,7 @@ public class UserController {
 
         if (verified) {
             String jwtToken = userService.generateToken(user);
-            return new ResponseEntity<>(jwtToken, OK);
+            return new ResponseEntity<>("Login Successful: " + jwtToken, OK);
         }
         return new ResponseEntity<>("Login Failed", UNAUTHORIZED);
     }

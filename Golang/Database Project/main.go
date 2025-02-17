@@ -3,10 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/jcelliott/lumber"
 	"os"
 	"path/filepath"
 	"sync"
+
+	"github.com/jcelliott/lumber"
 )
 
 type (
